@@ -10,7 +10,7 @@ function displayScreen(valueOfInputButton) {
 }
 
 function operator(valueOfInputButton) {
-    clearScreen();
+    mainScreen.value = '';
     evaluationsString += valueOfInputButton;
     smallScreen.value += evaluationsString;
 }
@@ -32,8 +32,9 @@ function compute() {
 }
 
 function clearScreen() {
+    let numberToClear = mainScreen.value;
+    evaluationsString = evaluationsString.replace(numberToClear, '');
     mainScreen.value = '';
-    smallScreen.value = '';
 }
 
 function allClear() {
