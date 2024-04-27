@@ -2,26 +2,25 @@
 
 const mainScreen = document.getElementById("big-screen");
 const smallScreen = document.getElementById("small-screen")
+let evaluationsString = '';
 
 function displayScreen(valueOfInputButton) {
     mainScreen.value += valueOfInputButton;
-    smallScreen.value += valueOfInputButton;
+    evaluationsString += valueOfInputButton;
 }
 
 function operator(valueOfInputButton) {
     clearScreen();
-    smallScreen.value += valueOfInputButton;
+    evaluationsString += valueOfInputButton;
+    smallScreen.value += evaluationsString;
 }
 
 function compute() {
     try {
-        if (smallScreen.value == '' && mainScreen.value == ''){
-            return
-        } else if (smallScreen.value == '') {
-            mainScreen.value = eval(mainScreen.value);
-
+        if (evaluationsString == '' && mainScreen.value == ''){
+            return;
         } else {
-            mainScreen.value = eval(smallScreen.value);
+            mainScreen.value = eval(evaluationsString);
             smallScreen.value = '';
         }
         
@@ -34,9 +33,11 @@ function compute() {
 
 function clearScreen() {
     mainScreen.value = '';
+    smallScreen.value = '';
 }
 
 function allClear() {
     smallScreen.value = '';
     mainScreen.value = '';
+    evaluationsString = '';
 }
